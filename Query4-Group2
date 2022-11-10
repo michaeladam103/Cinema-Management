@@ -1,0 +1,16 @@
+-- Group 2: HAVING, OFFSET, outer join, join 4 more tables
+-- At the La Crosse cinema, what employees were assigned to auditoriums that were showing the movie Don’t Worry, Darling. (Joins 4+ tables ON foreign keys)
+
+SELECT Employee.Employee_Id, Employee.Name, Auditorium.Auditorum_No, Movie.Title
+  FROM Employee JOIN Assigned_To JOIN Auditorium JOIN Screens JOIN Showing JOIN Features JOIN Movie
+    ON Employee.Employee_Id = Assigned_To.Employee_Id
+      AND Assigned_To.Theatre_Id = Auditorium.Theatre_Id
+      AND Auditorium.Theatre_Id = Screens.Theatre_Id
+      AND Screens.Showing_Id = Showing.Showing_Id
+      AND Showing.Showing_Id = Features.Showing_Id
+      AND Features.Movie_Id = Movie.Movie_Id
+  WHERE (SELECT Auditorium_No
+          FROM Auditorium JOIN Screens JOIN Screens JOIN Showing JOIN Features JOIN Movie
+            ON..........
+            AND........
+          WHERE Movie.Title LIKE 'Don't Worry Darling')
