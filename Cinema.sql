@@ -12,7 +12,7 @@ create table Auditorium (
 	Auditorium_No INT PRIMARY KEY NOT NULL,
 	SeatCount INT NOT NULL,
 	Theatre_Id INT NOT NULL
-	CONSTRAINT fk_auditorium_is_housed_in FOREIGN KEY (Theatre_Id) REFERENCES Theatre (Theatre_Id)
+	FOREIGN KEY (Theatre_Id) REFERENCES Theatre(Theatre_Id)
 );
 
 
@@ -30,7 +30,7 @@ create table Assigned_To (
 	Employee_Id INT NOT NULL ,
 	Theatre_Id INT NOT NULL
 	CONSTRAINT fk_employee FOREIGN KEY (Employee_Id) REFERENCES Employee (Employee_Id)
-	CONSTRAINT fk_employee_assigned_to_theatre FOREIGN KEY (Theatre_Id) REFERENCES Theatre (Theatre_Id)
+	FOREIGN KEY (Theatre_Id) REFERENCES Theatre(Theatre_Id)
 	
 );
 create table Movie (
@@ -48,22 +48,22 @@ create table Showing (
 	StartTime VARCHAR(50) NOT NULL,
 	Theatre_Id INT NOT NULL,
 	Movie_Id INT NOT NULL
-	CONSTRAINT fk_theatre_showing FOREIGN KEY (Theatre_Id) REFERENCES Theatre (Theatre_Id)
-	CONSTRAINT fk_movie_now_playing FOREIGN KEY (Movie_Id) REFERENCES Movie (Movie_Id) 
+	FOREIGN KEY (Theatre_Id) REFERENCES Theatre(Theatre_Id)
+	FOREIGN KEY (Movie_Id) REFERENCES Movie(Movie_Id) 
 );
 
 create table Screens (
 	Theatre_Id INT NOT NULL,
 	Showing_Id INT NOT NULL
-	CONSTRAINT fk_screens_at_theatre FOREIGN KEY (Theatre_Id) REFERENCES Theatre (Theatre_Id)
-	CONSTRAINT fk_screens_showing FOREIGN KEY (Showing_Id) REFERENCES Showing (Showing_Id)	
+	FOREIGN KEY (Theatre_Id) REFERENCES Theatre(Theatre_Id)
+	FOREIGN KEY (Showing_Id) REFERENCES Showing(Showing_Id)	
 );
 
 create table Features (
 	Movie_Id INT NOT NULL,
 	Showing_Id INT NOT NULL
-	CONSTRAINT fk_features_movie FOREIGN KEY (Movie_Id) REFERENCES Movie (Movie_Id)
-	CONSTRAINT fk_features_showing FOREIGN KEY (Showing_Id) REFERENCES Showing (Showing_Id)
+	FOREIGN KEY (Movie_Id) REFERENCES Movie(Movie_Id)
+	FOREIGN KEY (Showing_Id) REFERENCES Showing(Showing_Id)
 );
 
 insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (255, 'Pigeon, wood', '40', 'Talmadge', 'Louisiana', 'Shreveport', '71151');
