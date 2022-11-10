@@ -1,0 +1,86 @@
+CREATE TABLE [Theatre] 
+(
+	[Theatre_Id] INTEGER PRIMARY KEY NOT NULL,
+	[TheatreName] VARCHAR(50) NOT NULL,
+	[StreetNumber] VARCHAR(50) NOT NULL,
+	[Street] VARCHAR(50) NOT NULL,
+	[State] VARCHAR(50) NOT NULL,
+	[City] VARCHAR(50) NOT NULL,
+	[Zip] VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE [Auditorium] 
+(
+	[Auditorium_No] INT PRIMARY KEY NOT NULL,
+	[SeatCount] INT NOT NULL,
+	[Theatre_Id] INT NOT NULL
+	FOREIGN KEY ([Theatre_Id]) REFERENCES [Theatre] ([Theatre_Id])
+		ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+
+CREATE TABLE [Employee] 
+(
+	[Employee_Id] INT PRIMARY KEY NOT NULL,
+	[SSN] VARCHAR(50) NOT NULL,
+	[FirstName] VARCHAR(50) NOT NULL,
+	[MiddleName] VARCHAR(50),
+	[LastName] VARCHAR(50) NOT NULL,
+	[DateOfBirth] DATE NOT NULL,
+	[DateOfHire] DATE NOT NULL
+);
+
+CREATE TABLE [Assigned_To]
+(
+	[Employee_Id] INT NOT NULL ,
+	[Theatre_Id] INT NOT NULL
+	FOREIGN KEY ([Employee_Id]) REFERENCES [Employee] ([Employee_Id])
+			ON DELETE NO ACTION ON UPDATE NO ACTION
+	FOREIGN KEY (Theatre_Id) REFERENCES [Theatre](Theatre_Id)
+			ON DELETE NO ACTION ON UPDATE NO ACTION
+	
+);
+CREATE TABLE [Movie] (
+	[Movie_Id] INT PRIMARY KEY NOT NULL,
+	[Title] VARCHAR(50) NOT NULL,
+	[Genre] VARCHAR(50) NOT NULL,
+	[Rating] DECIMAL(3,2) NOT NULL,
+	[ReleaseDate] DATE NOT NULL,
+	[Director] VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE [Showing] (
+	[Showing_Id] INT PRIMARY KEY NOT NULL,
+	[Date] DATE NOT NULL,
+	[StartTime] VARCHAR(50) NOT NULL,
+	[Theatre_Id] INT NOT NULL,
+	[Movie_Id] INT NOT NULL
+	FOREIGN KEY (Theatre_Id) REFERENCES Theatre(Theatre_Id)
+			ON DELETE NO ACTION ON UPDATE NO ACTION
+	FOREIGN KEY (Movie_Id) REFERENCES Movie(Movie_Id) 
+			ON DELETE NO ACTION ON UPDATE NO ACTION
+
+);
+
+CREATE TABLE [Screens] (
+	[Theatre_Id] INT NOT NULL,
+	[Showing_Id] INT NOT NULL
+	FOREIGN KEY (Theatre_Id) REFERENCES Theatre(Theatre_Id)
+			ON DELETE NO ACTION ON UPDATE NO ACTION
+	FOREIGN KEY (Showing_Id) REFERENCES Showing(Showing_Id)	
+			ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+CREATE TABLE [Features] (
+	[Movie_Id] INT NOT NULL,
+	[Showing_Id] INT NOT NULL
+	FOREIGN KEY (Movie_Id) REFERENCES Movie(Movie_Id)
+			ON DELETE NO ACTION ON UPDATE NO ACTION
+	FOREIGN KEY (Showing_Id) REFERENCES Showing(Showing_Id)
+			ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+
+
+
+
