@@ -27,7 +27,6 @@ insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City,
 insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (181, 'Thrasher, curve-billed', '3050', 'Sauthoff', 'Kentucky', 'Migrate', '41905');
 insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (156, 'Asian elephant', '9', 'Katie', 'Florida', 'Miami', '33233');
 insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (241, 'Yellow-brown sungazer', '67', 'Tennessee', 'California', 'San Bernardino', '92410');
-insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (77, 'Fisher', '393', 'Mayer', 'New York', 'Jamaica', '11407');
 insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (105, 'Squirrel, malabar', '0818', 'Maple Wood', 'Texas', 'Beaumont', '77713');
 insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (229, 'Sociable weaver', '6549', 'Mayfield', 'Florida', 'Tampa', '33680');
 insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (11, 'Lemming, arctic', '01783', 'Bowman', 'Michigan', 'Saginaw', '48609');
