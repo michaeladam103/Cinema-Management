@@ -1,0 +1,8 @@
+-- Group 2: HAVING, OFFSET, outer join, join 4 more tables
+--  5th thru 10th most experienced employees (LIMIT 6 OFFSET 4, date of hire Descending)
+
+SELECT Name, Employee_Id, DateOfHire
+  FROM Employee
+  ORDER BY DateOfHire DESC
+  LIMIT 6
+  OFFSET 4
