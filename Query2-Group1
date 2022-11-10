@@ -1,0 +1,9 @@
+-- Group 1: Aggregate, LIKE, GROUP BY, ORDER BY, LIMIT
+-- Count of horror movies featured on a particular day (using aggregate: count(Movie.genre) GROUP BY date)
+
+SELECT count(Movie.genre)
+  FROM Movie JOIN Showing
+  ON Movie.Movie_Id = Features.Movie_Id
+    AND Features.Showing_Id = Showing.Showing_Id
+  WHERE Genre = 'Horror'
+  GROUP BY Showing.Date
