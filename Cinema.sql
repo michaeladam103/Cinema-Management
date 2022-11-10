@@ -7,6 +7,65 @@ create table Theatre (
 	City VARCHAR(50) NOT NULL,
 	Zip VARCHAR(50) NOT NULL
 );
+
+create table Auditorium (
+	Auditorium_No INT PRIMARY KEY NOT NULL,
+	SeatCount INT NOT NULL,
+	Theatre_Id INT NOT NULL
+	CONSTRAINT fk_auditorium_is_housed_in FOREIGN KEY (Theatre_Id) REFERENCES Theatre (Theatre_Id)
+);
+
+
+create table Employee (
+	Employee_Id INT PRIMARY KEY NOT NULL,
+	SSN VARCHAR(50) NOT NULL,
+	FirstName VARCHAR(50) NOT NULL,
+	MiddleName VARCHAR(50),
+	LastName VARCHAR(50) NOT NULL,
+	DateOfBirth DATE NOT NULL,
+	DateOfHire DATE NOT NULL
+);
+
+create table Assigned_To (
+	Employee_Id INT NOT NULL ,
+	Theatre_Id INT NOT NULL
+	CONSTRAINT fk_employee FOREIGN KEY (Employee_Id) REFERENCES Employee (Employee_Id)
+	CONSTRAINT fk_employee_assigned_to_theatre FOREIGN KEY (Theatre_Id) REFERENCES Theatre (Theatre_Id)
+	
+);
+create table Movie (
+	Movie_Id INT PRIMARY KEY NOT NULL,
+	Title VARCHAR(50) NOT NULL,
+	Genre VARCHAR(50) NOT NULL,
+	Rating DECIMAL(3,2) NOT NULL,
+	ReleaseDate DATE NOT NULL,
+	Director VARCHAR(50) NOT NULL
+);
+
+create table Showing (
+	Showing_Id INT PRIMARY KEY NOT NULL,
+	Date DATE NOT NULL,
+	StartTime VARCHAR(50) NOT NULL,
+	Theatre_Id INT NOT NULL,
+	Movie_Id INT NOT NULL
+	CONSTRAINT fk_theatre_showing FOREIGN KEY (Theatre_Id) REFERENCES Theatre (Theatre_Id)
+	CONSTRAINT fk_movie_now_playing FOREIGN KEY (Movie_Id) REFERENCES Movie (Movie_Id) 
+);
+
+create table Screens (
+	Theatre_Id INT NOT NULL,
+	Showing_Id INT NOT NULL
+	CONSTRAINT fk_screens_at_theatre FOREIGN KEY (Theatre_Id) REFERENCES Theatre (Theatre_Id)
+	CONSTRAINT fk_screens_showing FOREIGN KEY (Showing_Id) REFERENCES Showing (Showing_Id)	
+);
+
+create table Features (
+	Movie_Id INT NOT NULL,
+	Showing_Id INT NOT NULL
+	CONSTRAINT fk_features_movie FOREIGN KEY (Movie_Id) REFERENCES Movie (Movie_Id)
+	CONSTRAINT fk_features_showing FOREIGN KEY (Showing_Id) REFERENCES Showing (Showing_Id)
+);
+
 insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (255, 'Pigeon, wood', '40', 'Talmadge', 'Louisiana', 'Shreveport', '71151');
 insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (259, 'Puffin, horned', '4931', 'Kedzie', 'Florida', 'Jacksonville', '32230');
 insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (175, 'Cat, native', '36', '3rd', 'Texas', 'El Paso', '79984');
@@ -307,12 +366,7 @@ insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City,
 insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (98, 'Green heron', '06', 'Goodland', 'Florida', 'Bradenton', '34205');
 insert into Theatre (Theatre_Id, TheatreName, StreetNumber, Street, State, City, Zip) values (211, 'Galapagos dove', '54661', 'Alpine', 'Alabama', 'Birmingham', '35210');
 
-create table Auditorium (
-	Auditorium_No INT PRIMARY KEY NOT NULL,
-	SeatCount INT NOT NULL,
-	Theatre_Id INT NOT NULL
-	CONSTRAINT fk_auditorium_is_housed_in FOREIGN KEY (Theatre_Id) REFERENCES Theatre (Theatre_Id)
-);
+
 insert into Auditorium (Auditorium_No, SeatCount, Theatre_Id) values (9, 55, 123);
 insert into Auditorium (Auditorium_No, SeatCount, Theatre_Id) values (14, 166, 172);
 insert into Auditorium (Auditorium_No, SeatCount, Theatre_Id) values (7, 192, 171);
@@ -1314,15 +1368,7 @@ insert into Auditorium (Auditorium_No, SeatCount, Theatre_Id) values (3, 96, 4);
 insert into Auditorium (Auditorium_No, SeatCount, Theatre_Id) values (5, 98, 39);
 insert into Auditorium (Auditorium_No, SeatCount, Theatre_Id) values (3, 122, 16);
 
-create table Employee (
-	Employee_Id INT PRIMARY KEY NOT NULL,
-	SSN VARCHAR(50) NOT NULL,
-	FirstName VARCHAR(50) NOT NULL,
-	MiddleName VARCHAR(50),
-	LastName VARCHAR(50) NOT NULL,
-	DateOfBirth DATE NOT NULL,
-	DateOfHire DATE NOT NULL
-);
+
 insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (277, '715-22-0401', 'Dennis', 'Jerald', 'Jerzycowski', '11/18/1989', '11/30/1999');
 insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (174, '669-29-8783', 'Jereme', 'Ronnica', 'Veregan', '3/20/1964', '3/20/2019');
 insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (51, '285-32-0679', 'Fanechka', 'Walton', 'Walsh', '8/26/1958', '1/8/1990');
@@ -2324,13 +2370,7 @@ insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfB
 insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (121, '413-80-5570', 'Nikolas', 'Thomasin', 'Yeatman', '8/14/1996', '7/28/1967');
 insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (37, '721-61-8822', 'Erastus', 'Georgine', 'Colchett', '11/10/1974', '6/21/1970');
 
-create table Assigned_To (
-	Employee_Id INT NOT NULL ,
-	Theatre_Id INT NOT NULL
-	CONSTRAINT fk_employee FOREIGN KEY (Employee_Id) REFERENCES Employee (Employee_Id)
-	CONSTRAINT fk_employee_assigned_to_theatre FOREIGN KEY (Theatre_Id) REFERENCES Theatre (Theatre_Id)
-	
-);
+
 insert into Assigned_To (Employee_Id, Theatre_Id) values (209, 11);
 insert into Assigned_To (Employee_Id, Theatre_Id) values (164, 243);
 insert into Assigned_To (Employee_Id, Theatre_Id) values (41, 6);
@@ -3332,14 +3372,7 @@ insert into Assigned_To (Employee_Id, Theatre_Id) values (116, 136);
 insert into Assigned_To (Employee_Id, Theatre_Id) values (119, 230);
 insert into Assigned_To (Employee_Id, Theatre_Id) values (135, 100);
 
-create table Movie (
-	Movie_Id INT PRIMARY KEY NOT NULL,
-	Title VARCHAR(50) NOT NULL,
-	Genre VARCHAR(50) NOT NULL,
-	Rating DECIMAL(3,2) NOT NULL,
-	ReleaseDate DATE NOT NULL,
-	Director VARCHAR(50) NOT NULL
-);
+
 insert into Movie (Movie_Id, Title, Genre, Rating, ReleaseDate, Director) values (131, 'Confession', 'Drama', 3.59, '5/7/1977', 'Marlon Copas');
 insert into Movie (Movie_Id, Title, Genre, Rating, ReleaseDate, Director) values (95, 'Fist of Jesus', '(no genres listed)', 2.92, '8/22/1990', 'Elsy Gemlett');
 insert into Movie (Movie_Id, Title, Genre, Rating, ReleaseDate, Director) values (232, 'Teenage Mutant Ninja Turtles: Turtles Forever', 'Action|Adventure|Animation|Comedy|Thriller', 3.09, '11/8/2011', 'Broddy Steckings');
@@ -4341,15 +4374,8 @@ insert into Movie (Movie_Id, Title, Genre, Rating, ReleaseDate, Director) values
 insert into Movie (Movie_Id, Title, Genre, Rating, ReleaseDate, Director) values (310, 'Angels Over Broadway', 'Adventure|Comedy|Crime|Drama', 2.12, '2/25/2011', 'Bekki Battson');
 insert into Movie (Movie_Id, Title, Genre, Rating, ReleaseDate, Director) values (637, 'Werewolf Boy, A (Neuk-dae-so-nyeon)', 'Drama|Fantasy|Romance', 4.7, '10/25/2011', 'Reinwald Frarey');
 
-create table Showing (
-	Showing_Id INT PRIMARY KEY NOT NULL,
-	Date DATE NOT NULL,
-	StartTime VARCHAR(50) NOT NULL,
-	Theatre_Id INT NOT NULL,
-	Movie_Id INT NOT NULL
-	CONSTRAINT fk_theatre_showing FOREIGN KEY (Theatre_Id) REFERENCES Theatre (Theatre_Id)
-	CONSTRAINT fk_movie_now_playing FOREIGN KEY (Movie_Id) REFERENCES Movie (Movie_Id) 
-);
+
+
 insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (134, '11/26/2022', '4:57 PM', 1, 6);
 insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (376, '12/23/2022', '4:30 PM', 71, 698);
 insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (853, '12/6/2022', '5:11 PM', 241, 160);
@@ -5351,13 +5377,7 @@ insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (
 insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (383, '11/10/2022', '7:11 PM', 178, 649);
 insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (844, '11/11/2022', '6:00 PM', 207, 364);
 
-create table Screens (
-	Theatre_Id INT NOT NULL,
-	Showing_Id INT NOT NULL
-	CONSTRAINT fk_screens_at_theatre FOREIGN KEY (Theatre_Id) REFERENCES Theatre (Theatre_Id)
-	CONSTRAINT fk_screens_showing FOREIGN KEY (Showing_Id) REFERENCES Showing (Showing_Id)
-	
-);
+
 insert into Screens (Theatre_Id, Showing_Id) values (251, 623);
 insert into Screens (Theatre_Id, Showing_Id) values (229, 200);
 insert into Screens (Theatre_Id, Showing_Id) values (28, 80);
@@ -6359,12 +6379,7 @@ insert into Screens (Theatre_Id, Showing_Id) values (191, 269);
 insert into Screens (Theatre_Id, Showing_Id) values (148, 806);
 insert into Screens (Theatre_Id, Showing_Id) values (225, 18);
 
-create table Features (
-	Movie_Id INT NOT NULL,
-	Showing_Id INT NOT NULL
-	CONSTRAINT fk_features_movie FOREIGN KEY (Movie_Id) REFERENCES Movie (Movie_Id)
-	CONSTRAINT fk_features_showing FOREIGN KEY (Showing_Id) REFERENCES Showing (Showing_Id)
-);
+
 insert into Features (Movie_Id, Showing_Id) values (716, 450);
 insert into Features (Movie_Id, Showing_Id) values (558, 544);
 insert into Features (Movie_Id, Showing_Id) values (321, 776);
@@ -7365,13 +7380,3 @@ insert into Features (Movie_Id, Showing_Id) values (480, 451);
 insert into Features (Movie_Id, Showing_Id) values (258, 869);
 insert into Features (Movie_Id, Showing_Id) values (550, 389);
 insert into Features (Movie_Id, Showing_Id) values (26, 69);
-
-
-
-
-
-
-
-
-
-
