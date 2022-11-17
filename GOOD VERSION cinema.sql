@@ -13,7 +13,7 @@ CREATE TABLE [Auditorium]
 (
 	[Auditorium_No] INT PRIMARY KEY NOT NULL,
 	[SeatCount] INT NOT NULL,
-	[Theatre_Id] INT NOT NULL
+	[Theatre_Id] INT NOT NULL,
 	FOREIGN KEY ([Theatre_Id]) REFERENCES [Theatre] ([Theatre_Id])
 		ON DELETE NO ACTION ON UPDATE NO ACTION
 );
@@ -33,7 +33,7 @@ CREATE TABLE [Employee]
 CREATE TABLE [Assigned_To]
 (
 	[Employee_Id] INT NOT NULL ,
-	[Theatre_Id] INT NOT NULL
+	[Theatre_Id] INT NOT NULL,
 	FOREIGN KEY ([Employee_Id]) REFERENCES [Employee] ([Employee_Id])
 			ON DELETE NO ACTION ON UPDATE NO ACTION
 	FOREIGN KEY (Theatre_Id) REFERENCES [Theatre](Theatre_Id)
@@ -54,7 +54,7 @@ CREATE TABLE [Showing] (
 	[Date] DATE NOT NULL,
 	[StartTime] VARCHAR(50) NOT NULL,
 	[Theatre_Id] INT NOT NULL,
-	[Movie_Id] INT NOT NULL
+	[Movie_Id] INT NOT NULL,
 	FOREIGN KEY (Theatre_Id) REFERENCES Theatre(Theatre_Id)
 			ON DELETE NO ACTION ON UPDATE NO ACTION
 	FOREIGN KEY (Movie_Id) REFERENCES Movie(Movie_Id) 
@@ -64,7 +64,7 @@ CREATE TABLE [Showing] (
 
 CREATE TABLE [Screens] (
 	[Theatre_Id] INT NOT NULL,
-	[Showing_Id] INT NOT NULL
+	[Showing_Id] INT NOT NULL,
 	FOREIGN KEY (Theatre_Id) REFERENCES Theatre(Theatre_Id)
 			ON DELETE NO ACTION ON UPDATE NO ACTION
 	FOREIGN KEY (Showing_Id) REFERENCES Showing(Showing_Id)	
@@ -73,7 +73,7 @@ CREATE TABLE [Screens] (
 
 CREATE TABLE [Features] (
 	[Movie_Id] INT NOT NULL,
-	[Showing_Id] INT NOT NULL
+	[Showing_Id] INT NOT NULL,
 	FOREIGN KEY (Movie_Id) REFERENCES Movie(Movie_Id)
 			ON DELETE NO ACTION ON UPDATE NO ACTION
 	FOREIGN KEY (Showing_Id) REFERENCES Showing(Showing_Id)
@@ -201,25 +201,25 @@ insert into Movie (Movie_Id, Title, Genre, Rating, ReleaseDate, Director) values
 insert into Movie (Movie_Id, Title, Genre, Rating, ReleaseDate, Director) values (135, 'Rebellion (L''ordre et la morale)', 'Action|Drama', 1.29, '9/22/2021', 'Shanna Stratley');
 
 
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (831, '12/7/2022', '7:56 PM', 225, 713);
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (918, '12/21/2022', '3:21 PM', 57, 308);
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (483, '12/27/2022', '7:01 PM', 248, 745);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (831, '12/7/2022', '7:56 PM', 1, 713);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (918, '12/21/2022', '3:21 PM', 2, 308);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (483, '12/27/2022', '7:01 PM', 3, 745);
 
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (280, '11/23/2022', '4:19 PM', 22, 578);
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (471, '12/16/2022', '11:50 PM', 48, 613);
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (46, '11/13/2022', '4:59 PM', 18, 112);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (280, '11/23/2022', '4:19 PM', 4, 578);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (471, '12/16/2022', '11:50 PM', 5, 613);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (46, '11/13/2022', '4:59 PM', 6, 112);
 
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (194, '12/16/2022', '7:20 PM', 162, 201);
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (243, '11/9/2022', '7:47 PM', 256, 373);
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (790, '12/22/2022', '6:13 PM', 268, 458);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (194, '12/16/2022', '7:20 PM', 1, 201);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (243, '11/9/2022', '7:47 PM', 2, 373);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (790, '12/22/2022', '6:13 PM', 3, 458);
 
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (586, '12/10/2022', '12:43 PM', 40, 669);
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (870, '11/22/2022', '2:16 PM', 202, 60);
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (306, '12/21/2022', '12:24 PM', 119, 736);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (586, '12/10/2022', '12:43 PM', 4, 669);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (870, '11/22/2022', '2:16 PM', 5, 60);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (306, '12/21/2022', '12:24 PM', 6, 736);
 
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (947, '11/17/2022', '3:41 PM', 108, 53);
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (610, '12/4/2022', '2:01 PM', 219, 276);
-insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (858, '11/13/2022', '2:13 PM', 229, 135);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (947, '11/17/2022', '3:41 PM', 1, 53);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (610, '12/4/2022', '2:01 PM', 2, 276);
+insert into Showing (Showing_Id, Date, StartTime, Theatre_Id, Movie_Id) values (858, '11/13/2022', '2:13 PM', 3, 135);
 
 
 insert into Screens (Theatre_Id, Showing_Id) values (1, 831);
@@ -258,4 +258,10 @@ insert into Features (Movie_Id, Showing_Id) values (736, 306);
 insert into Features (Movie_Id, Showing_Id) values (53, 947);
 insert into Features (Movie_Id, Showing_Id) values (276, 610);
 insert into Features (Movie_Id, Showing_Id) values (135, 858);
+
+
+
+
+
+
 
