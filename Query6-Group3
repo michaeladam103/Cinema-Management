@@ -1,0 +1,10 @@
+-Group 3: SUBQUERIES, IN, set operators
+-Out of all the movies showing at a particular time, which movies had a rating better than 3 stars.  (subquery in the FROM clause)
+
+SELECT Title, Rating, Time
+  FROM (SELECT Title, Time
+          FROM Movie JOIN Showing
+            ON Movie.Movie_Id = Features.Movie_Id
+              AND Features.Showing_Id = Showing.Showing_Id
+          WHERE Time = ????) AS particularTime JOIN Movie
+  WHERE Rating >= 3.0
