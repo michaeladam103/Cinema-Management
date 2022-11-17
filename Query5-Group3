@@ -1,0 +1,3 @@
+-Group 3: SUBQUERIES, IN, set operators
+-Use the EXISTS operator to determine if a showing exists in an auditorium at a certain time. (set operator EXISTS)
+SELECT 
