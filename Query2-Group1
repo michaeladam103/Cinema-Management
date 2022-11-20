@@ -1,6 +1,5 @@
 -- Group 1: Aggregate, LIKE, GROUP BY, ORDER BY, LIMIT
 -- Count of horror movies featured on a particular day (using aggregate: count(Movie.genre) GROUP BY date)
---Tested - Error while executing SQL query on database 'Cinema': no such column: Features.Movie_Id
 
 SELECT count(Movie.genre)
   FROM Movie JOIN Showing
