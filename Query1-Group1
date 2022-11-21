@@ -4,5 +4,5 @@
 
 SELECT *
   FROM Movie
-  ORDER BY ReleaseDate Descending
+  ORDER BY ReleaseYear DESC
   LIMIT 10
