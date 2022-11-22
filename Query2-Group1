@@ -11,11 +11,11 @@ SELECT count(Movie.genre)
 
 
 UPDATED:
+LIKE operator
 
 SELECT count(*) AS Total, Movie.Title, Movie.Genre, Showing.Date
   FROM Movie JOIN Features JOIN Showing
       ON Movie.Movie_Id = Features.Movie_Id
       AND Features.Showing_Id = Showing.Showing_Id
-  WHERE Genre = 'Drama'
+  WHERE Genre LIKE 'Drama'
       AND DATE = '11/22/2022'
-  GROUP BY Showing.Date
