@@ -10,8 +10,10 @@ SELECT count(Movie.genre)
 
 
 
-UPDATED:
-LIKE operator
+--UPDATED:
+--LIKE operator
+--THIS QUERY WILL RETURN INFO ABOUT DRAMA MOVIE BEING SHOWN ON 11/22/2022
+--RETURNS 1 TUPLES
 
 SELECT count(*) AS Total, Movie.Title, Movie.Genre, Showing.Date
   FROM Movie JOIN Features JOIN Showing
@@ -19,3 +21,16 @@ SELECT count(*) AS Total, Movie.Title, Movie.Genre, Showing.Date
       AND Features.Showing_Id = Showing.Showing_Id
   WHERE Genre LIKE 'Drama'
       AND DATE = '11/22/2022'
+
+
+
+
+--THIS QUERY WILL RETURN ALL INFO AOBUT DRAMA MOVIES BEING SHOWN
+--RETURNS 3 TUPLES
+
+SELECT  *
+  FROM Movie JOIN Features JOIN Showing
+      ON Movie.Movie_Id = Features.Movie_Id
+      AND Features.Showing_Id = Showing.Showing_Id
+  WHERE Genre LIKE 'Drama'
+      --AND DATE = '11/22/2022'
