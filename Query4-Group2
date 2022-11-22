@@ -32,3 +32,26 @@ SELECT Employee.Employee_Id, Employee.Name, Auditorium.Auditorum_No, Movie.Title
             AND Showing.Showing_Id = Features.Showing_Id
             AND Features.Movie_Id = Movie.Movie_Id
           WHERE Movie.Title LIKE 'Future by Design') 
+          
+          
+          
+--UPDATED BY EMILY         
+-- Group 2: HAVING, OFFSET, outer join, join 4 more tables
+-- What employees were assigned to the theatres that were showing the movie Future By Design. (Joins 4+ tables ON foreign keys)
+
+
+SELECT DISTINCT Employee.Employee_Id, Employee.FirstName, Employee.LastName
+    FROM  Employee JOIN Assigned_To JOIN Auditorium 
+        ON Employee.Employee_Id = Assigned_To.Employee_Id
+        AND Assigned_To.Theatre_Id = Auditorium.Theatre_Id
+    WHERE Assigned_To.Theatre_ID = (SELECT Theatre.Theatre_Id
+      FROM Theatre JOIN Auditorium JOIN Screens JOIN Showing JOIN Features JOIN Movie
+            ON Theatre.Theatre_Id = Auditorium.Theatre_Id
+            AND Auditorium.Theatre_Id = Screens.Theatre_Id
+            AND Screens.Showing_Id = Showing.Showing_Id
+            AND Showing.Showing_Id = Features.Showing_Id
+            AND Features.Movie_Id = Movie.Movie_Id
+         WHERE Theatre.TheatreName LIKE 'Wood Pigeon'
+         AND Movie.Title LIKE 'Future By Design')
+
+
