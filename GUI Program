@@ -1,0 +1,112 @@
+/*This program will do some simple interactive
+ * text-processing and input manipulation.
+ *
+ * @author <Your Name>
+ */
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class Program
+{
+    /**
+     * A window is opened containing 2 text-fields, a button,
+     * and a label area for displaying more text.  The buttons
+     * take any user input and display different versions on-screen.
+     *
+     * @Michael Adam
+     * CS 120-211
+     * 10/16/20
+     */
+    
+	public static void main( String[] args )
+    {
+        // variables for window size; also used to position objects
+        int windowWidth = 500;
+        int windowHeight = 250;
+
+        // variable for window color
+        Color lightSkyBlue = new Color( 135, 206, 250 );
+
+        // create the window for the program
+        JFrame win = new JFrame();
+        win.setLocation( 50, 50 );
+        win.setSize( windowWidth, windowHeight );
+        win.getContentPane().setBackground( lightSkyBlue );
+        win.setLayout( null );
+        win.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        win.setTitle( "What do you say?" );
+        win.setVisible( true );
+        win.setResizable( false );
+
+        // add the first label: it is given size and location using setBounds();
+        // it is set to be opaque so that we can see it on-screen
+        int indent = 50;
+        int labelWidth = windowWidth - ( 2 * indent );
+        int labelHeight = 25;
+        int labelYCoordinate = 25;
+        
+        //First label is created
+        JLabel answer1 = new JLabel();
+        answer1.setBounds( indent, labelYCoordinate, labelWidth, labelHeight );
+        answer1.setBackground( Color.white );
+        answer1.setOpaque( true );
+        win.add( answer1, 0 );
+
+        win.repaint();
+        
+        //Second label is created
+        JLabel answer2 = new JLabel();
+        answer2.setBounds( indent, labelYCoordinate + 50, labelWidth, labelHeight );
+        answer2.setBackground( Color.white );
+        answer2.setOpaque( true );
+        win.add( answer2, 0 );
+        
+        win.repaint();
+        
+        //Textfield is created
+        JTextField textfield = new JTextField();
+        textfield.setBounds( indent, labelYCoordinate + 100, labelWidth, labelHeight );
+        textfield.setBackground( Color.white );
+        textfield.setOpaque( true );
+        
+        win.add( textfield, 0 );
+        
+        win.repaint();
+        
+        //All Caps button is created
+        TextButton allcapButton = new TextButton( textfield);
+        allcapButton.setBounds( 100, 200, 100, 25);
+        allcapButton.setText("ALL CAPS");
+        allcapButton.setBackground( Color.white);
+        win.add( allcapButton ); 
+        
+        //Capitalization button is created
+        TextButton capButton = new TextButton( textfield);
+        capButton.setBounds( 300, 200, 100, 25);
+        capButton.setText("Capitalize");
+        capButton.setBackground( Color.white);
+        win.add( capButton );       
+        
+        win.repaint();
+
+        //All caps button is pressed
+        String inputStr1 = new String();
+        inputStr1 = allcapButton.getInput();
+        
+        //Turn the users input into all caps and display it in the first textfield
+        String userinput1 = inputStr1.toUpperCase();
+        answer1.setText(userinput1);
+
+        //Capitalization button is pressed
+        String inputStr2 = new String();
+        inputStr2 = capButton.getInput();
+        
+        //Take the user input and convert it to capitalize the first letter and display it in the second textfield
+        String userinput2 = inputStr2.substring(0,1).toUpperCase();
+        String inputCapitalized = userinput2 + inputStr2.substring(1);
+        answer2.setText(inputCapitalized);
+    }
+}
