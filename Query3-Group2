@@ -6,3 +6,17 @@ SELECT Name, Employee_Id, DateOfHire
   ORDER BY DateOfHire DESC
   LIMIT 6
   OFFSET 4
+
+
+
+UPDATED:
+
+-- Group 2: HAVING, OFFSET, outer join, join 4 more tables
+--  5th thru 10th most experienced employees (LIMIT 6 OFFSET 4, date of hire Descending)
+--returns 6 tuples
+
+SELECT Employee.FirstName, Employee.LastName, Employee_Id, YearOfHire
+  FROM Employee
+  ORDER BY YearOfHire DESC
+  LIMIT 6
+  OFFSET 4
