@@ -1,6 +1,6 @@
 -- Group 1: Aggregate, LIKE, GROUP BY, ORDER BY, LIMIT
 --  Top ten most recently released movies (using LIMIT 10, ORDER BY ReleaseDate Descending)
--- Tested - Need to update dates to years
+--UPDATED AND FINAL (I THINK)
 
 SELECT *
   FROM Movie
