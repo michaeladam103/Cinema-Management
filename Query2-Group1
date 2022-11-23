@@ -34,3 +34,9 @@ SELECT  *
       AND Features.Showing_Id = Showing.Showing_Id
   WHERE Genre LIKE 'Drama'
       --AND DATE = '11/22/2022'
+
+
+
+
+
+--UPDATED to show movies LIKE '%Drama%'
