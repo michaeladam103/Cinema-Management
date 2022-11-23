@@ -8,3 +8,38 @@ SELECT Title, Rating, Time
               AND Features.Showing_Id = Showing.Showing_Id
           WHERE Time = ????) AS particularTime JOIN Movie
   WHERE Rating >= 3.0
+  
+  
+  
+
+
+--Group 3: SUBQUERIES, IN, set operators
+--Out of all the movies showing at a particular time, which movies had a rating better than 3 stars.  (subquery in the FROM clause)
+
+/*SELECT Movie.Rating, Movie.Title, Showing.StartTime
+FROM (SELECT StartTime
+        FROM Showing
+        WHERE StartTime <= '5:00 PM') AS BetweenOnethruFive JOIN Movie JOIN Features JOIN Showing
+   ON Movie.Movie_Id = Features.Movie_Id
+        AND Features.Showing_Id = Showing.Showing_Id
+    WHERE Rating >= 3.0
+    ORDER BY Rating DESC*/
+    
+/*SELECT Month, Day, Year
+    FROM Showing
+    WHERE Month = 'December'*/
+    
+
+    
+--UPDATED FINAL 11/23: Out of all movies showing in December, Between 12:00 PM and 8:00 PM, select those with a rating better than 2 stars.
+    
+SELECT Movie.Rating, Movie.Title, Showing.StartTime, Showing.Month, Showing.Day, Showing.Year
+    FROM (SELECT Month
+    FROM Showing
+    WHERE Month = 'December') AS DecemberMovies JOIN Movie JOIN Features JOIN Showing
+        ON Movie.Movie_Id = Features.Movie_Id   
+            AND Features.Showing_Id = Showing.Showing_Id
+    WHERE Rating >= 2.0
+    GROUP BY StartTime
+    HAVING StartTime BETWEEN '12:00 PM' AND '8:00 PM'
+    ORDER BY Rating DESC
