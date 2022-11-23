@@ -28,15 +28,17 @@ SELECT count(*) AS Total, Movie.Title, Movie.Genre, Showing.Date
 --THIS QUERY WILL RETURN ALL INFO AOBUT DRAMA MOVIES BEING SHOWN
 --RETURNS 3 TUPLES
 
+--UPDATED to show movies LIKE '%Drama%'
+
 SELECT  *
   FROM Movie JOIN Features JOIN Showing
       ON Movie.Movie_Id = Features.Movie_Id
       AND Features.Showing_Id = Showing.Showing_Id
-  WHERE Genre LIKE 'Drama'
+  WHERE Genre LIKE '%Drama%'
       --AND DATE = '11/22/2022'
 
 
 
 
 
---UPDATED to show movies LIKE '%Drama%'
+
