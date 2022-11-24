@@ -1,3 +1,15 @@
 -Group 3: SUBQUERIES, IN, set operators
 -Use the EXISTS operator to determine if a showing exists in an auditorium at a certain time. (set operator EXISTS)
-SELECT 
+
+
+/*UPDATED 11/23: Use the IN clause to determine what movies are playing in auditorium 4, 12, and 15 
+                at what theatre and what time*/
+
+SELECT Title, StartTime, Auditorium_No, TheatreName
+    FROM Movie JOIN Features JOIN Showing JOIN Screens JOIN Auditorium JOIN Theatre
+        ON Movie.Movie_Id = Features.Movie_Id
+            AND Features.Showing_Id = Showing.Showing_Id
+            AND Showing.Showing_Id = Screens.Showing_Id
+            AND Screens.Theatre_Id = Auditorium.Theatre_Id
+            AND Auditorium.Theatre_Id = Theatre.Theatre_Id  
+        WHERE Auditorium.Auditorium_No IN (4, 12, 15)
