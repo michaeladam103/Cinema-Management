@@ -128,19 +128,19 @@ insert into Auditorium (Auditorium_No, SeatCount, Theatre_Id) values (36, 100, 6
 
 
 
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (277, '715-22-0401', 'Dennis', 'Jerald', 'Jerzycowski', '11/18/1989', '11/30/1999');
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (174, '669-29-8783', 'Jereme', 'Ronnica', 'Veregan', '3/20/1964', '3/20/2019');
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (51, '285-32-0679', 'Fanechka', 'Walton', 'Walsh', '8/26/1958', '1/8/1990');
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (67, '387-62-0501', 'Teddy', 'Carlie', 'Shergill', '5/26/1963', '12/28/1967');
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (68, '577-55-2151', 'Alida', 'Hanni', 'Gannan', '10/4/1957', '10/10/1996');
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (110, '575-25-9238', 'Mavis', 'Sloan', 'Tapsell', '4/10/1999', '4/22/1973');
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (17, '246-56-7715', 'Dew', 'Devlin', 'Cavaney', '11/4/1962', '6/30/2000');
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (196, '749-23-7123', 'Niel', 'Alfy', 'Jenney', '5/21/1965', '1/8/2017');
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (253, '230-46-8591', 'Amargo', 'Martin', 'Bibb', '3/18/1964', '8/29/1987');
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (129, '558-65-1395', 'Ronni', 'Cindee', 'Chaffen', '9/29/1998', '9/30/1965');
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (225, '110-91-7751', 'Lin', 'Doralin', 'Rubinshtein', '7/8/1998', '11/26/1984');
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (1, '348-79-2074', 'Bucky', 'Merle', 'Leveritt', '9/2/1971', '10/5/1963');
-insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, DateOfBirth, DateOfHire) values (87, '578-67-5952', 'Emerson', 'Marjy', 'Delafont', '9/26/1955', '2/3/1984');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (277, '715-22-0401', 'Dennis', 'Jerald', 'Jerzycowski', '1989', '1999');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (174, '669-29-8783', 'Jereme', 'Ronnica', 'Veregan', '1964', '2019');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (51, '285-32-0679', 'Fanechka', 'Walton', 'Walsh', '1958', '1990');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (67, '387-62-0501', 'Teddy', 'Carlie', 'Shergill', '1963', '1967');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (68, '577-55-2151', 'Alida', 'Hanni', 'Gannan', '1957', '1996');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (110, '575-25-9238', 'Mavis', 'Sloan', 'Tapsell', '1999', '1973');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (17, '246-56-7715', 'Dew', 'Devlin', 'Cavaney', '1962', '2000');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (196, '749-23-7123', 'Niel', 'Alfy', 'Jenney', '1965', '2017');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (253, '230-46-8591', 'Amargo', 'Martin', 'Bibb', '1964', '1987');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (129, '558-65-1395', 'Ronni', 'Cindee', 'Chaffen', '1998', '1965');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (225, '110-91-7751', 'Lin', 'Doralin', 'Rubinshtein', '1998', '1984');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (1, '348-79-2074', 'Bucky', 'Merle', 'Leveritt', '1971', '1963');
+insert into Employee (Employee_Id, SSN, FirstName, MiddleName, LastName, BirthYear, YearOfHire) values (87, '578-67-5952', 'Emerson', 'Marjy', 'Delafont', '1955', '1984');
 
 
 insert into Assigned_To (Employee_Id, Theatre_Id) values (277, 1);
@@ -258,6 +258,7 @@ insert into Features (Movie_Id, Showing_Id) values (736, 306);
 insert into Features (Movie_Id, Showing_Id) values (53, 947);
 insert into Features (Movie_Id, Showing_Id) values (276, 610);
 insert into Features (Movie_Id, Showing_Id) values (135, 858);
+
 
 
 
