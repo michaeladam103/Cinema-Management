@@ -2,7 +2,7 @@
 --  Top ten most recently released movies (using LIMIT 10, ORDER BY ReleaseDate Descending)
 --UPDATED AND FINAL (I THINK)
 
-SELECT *
+SELECT Movie_Id, Title, Genre, Rating, ReleaseYear, Director
   FROM Movie
   ORDER BY ReleaseYear DESC
   LIMIT 10
