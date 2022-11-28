@@ -1,0 +1,292 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class Cinema {
+
+	public static void main(String[] args) {
+		Database db = Database.getInstance();
+
+		try {
+			db.connect();
+		} catch (SQLException e) {
+			System.out.print("Database connection failed...");
+			e.printStackTrace();
+		}
+		System.out.print("Connected!\n");
+		
+		
+//query 1
+		System.out.println("Query 1 Results");
+		try {
+			
+			//ArrayList<Movie> movies = new ArrayList<>();
+			ResultSet resultsQuery1 = db.runQuery("SELECT Movie_Id, Title, Genre, Rating, ReleaseYear, Director FROM Movie ORDER BY ReleaseYear DESC LIMIT 10");
+
+			//ResultSet resultsQuery1 = db.runQuery("SELECT * FROM Movie");
+			//System.out.println(resultsQuery1);
+			//while loop looks at tuples while there is still more tuples
+			while(resultsQuery1.next()) 
+			{
+				//note: getting first attribute is attr1
+				
+				int Movie_Id = resultsQuery1.getInt("Movie_Id");
+				System.out.print("Movie_Id: "+ Movie_Id + ", ");
+
+				String Title = resultsQuery1.getString("Title");
+				System.out.print("Title: "+ Title + ", ");
+
+				String Genre = resultsQuery1.getString("Genre");
+				System.out.print("Genre: "+ Genre + ", ");
+
+				double Rating = resultsQuery1.getDouble("Rating");
+				System.out.print("Rating: "+ Rating + ", ");
+
+				int ReleaseYear = resultsQuery1.getInt("ReleaseYear");
+				System.out.print("ReleaseYear: "+ ReleaseYear);
+
+				String Director = resultsQuery1.getString("Director");
+				System.out.print("Director: "+ Director + ", ");
+
+				System.out.println();
+
+//				Movie m = new Movie(Movie_Id, Title, Genre, Rating, ReleaseYear, Director);
+				//movies.add(m);
+				//System.out.println(movie.toString());
+			}
+			System.out.println();
+
+//			for(Movie m: movies) {
+//				System.out.println(m);
+//			}
+		} catch (SQLException e) {
+			System.out.println("Can't run query1");
+		}
+		
+		System.out.println();
+
+		
+//query 2
+		System.out.println("Query 2 Results");
+		try {
+			
+			ResultSet resultsQuery2 = db.runQuery("SELECT * FROM Movie JOIN Features JOIN Showing ON Movie.Movie_Id = Features.Movie_Id AND Features.Showing_Id = Showing.Showing_Id WHERE Genre LIKE '%Drama%'");
+
+			while(resultsQuery2.next()) 
+			{
+				int Movie_Id = resultsQuery2.getInt("Movie_Id");
+				System.out.print("Movie_Id: "+ Movie_Id + ", ");
+
+				String Title = resultsQuery2.getString("Title");
+				System.out.print("Title: "+ Title + ", ");
+
+				String Genre = resultsQuery2.getString("Genre");
+				System.out.print("Genre: "+ Genre + ", ");
+
+				double Rating = resultsQuery2.getDouble("Rating");
+				System.out.print("Rating: "+ Rating + ", ");
+
+				int ReleaseYear = resultsQuery2.getInt("ReleaseYear");
+				System.out.println("ReleaseYear: "+ ReleaseYear);
+
+				String Director = resultsQuery2.getString("Director");
+				System.out.print("Director: "+ Director + ", ");
+				
+				int Showing_Id  = resultsQuery2.getInt("Showing_Id");
+				System.out.print("Showing_Id: " + Showing_Id +", ");
+				
+				String StartTime = resultsQuery2.getString("StartTime");
+				System.out.print("Start Time: "+StartTime+ ", ");
+				
+				int Theatre_Id  = resultsQuery2.getInt("Theatre_Id");
+				System.out.print("Theatre_Id: " + Theatre_Id +", ");
+				
+				String Month = resultsQuery2.getString("Month");
+				System.out.print("Month: " + Month +", ");
+				
+				int Day = resultsQuery2.getInt("Day");
+				System.out.print("Day: " + Day +", ");
+				
+				int Year = resultsQuery2.getInt("Year");
+				System.out.print("Year: " + Year +", ");
+				
+				System.out.println();
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Can't run query2");
+		}
+		
+		System.out.println();
+	
+//query 3
+		System.out.println("Query 3 Results");
+		try {
+			
+			ResultSet resultsQuery3 = db.runQuery("SELECT Employee.FirstName, Employee.LastName, Employee_Id, YearOfHire FROM Employee ORDER BY YearOfHire DESC LIMIT 6 OFFSET 4");
+				
+			while(resultsQuery3.next()) 
+			{
+
+				String FirstName = resultsQuery3.getString("FirstName");
+				System.out.print("FirstName: "+ FirstName + ", ");
+
+				String LastName = resultsQuery3.getString("LastName");
+				System.out.print("LastName: "+ LastName + ", ");	
+				
+				int Employee_Id = resultsQuery3.getInt("Employee_Id");
+				System.out.print("Employee_ID: "+Employee_Id);
+
+				int YearOfHire = resultsQuery3.getInt("YearOfHire");
+				System.out.print("YearOfHire: "+ YearOfHire + ", ");	
+ 
+				
+				
+				System.out.println();
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Can't run query3");
+		}
+	
+		System.out.println();
+		
+//query 4
+		System.out.println("Query 4 Results");
+		try 
+		{
+			String query4 = "SELECT DISTINCT Employee.Employee_Id AS Employee_Id, Employee.FirstName AS FirstName, Employee.LastName AS LastName ";
+					query4 += "FROM  Employee JOIN Assigned_To JOIN Auditorium ";
+					query4 += "ON Employee.Employee_Id = Assigned_To.Employee_Id ";
+					query4 += "AND Assigned_To.Theatre_Id = Auditorium.Theatre_Id ";
+					query4 += "WHERE Assigned_To.Theatre_ID = (SELECT Theatre.Theatre_Id ";
+					query4 += "FROM Theatre JOIN Auditorium JOIN Screens JOIN Showing JOIN Features JOIN Movie ";
+					query4 += "ON Theatre.Theatre_Id = Auditorium.Theatre_Id ";
+					query4 += "AND Auditorium.Theatre_Id = Screens.Theatre_Id ";
+					query4 += "AND Screens.Showing_Id = Showing.Showing_Id ";
+					query4 += "AND Showing.Showing_Id = Features.Showing_Id ";
+					query4 += "AND Features.Movie_Id = Movie.Movie_Id ";
+					query4 += " WHERE Theatre.TheatreName LIKE 'Wood Pigeon' ";
+					query4 += "AND Movie.Title LIKE 'Future By Design')";
+
+			
+			ResultSet resultsQuery4 = db.runQuery(query4);
+			while(resultsQuery4.next()) 
+			{
+				int Employee_Id = resultsQuery4.getInt("Employee_Id");
+				System.out.print("Employee_ID: "+Employee_Id + ", ");
+				
+				String FirstName = resultsQuery4.getString("FirstName");
+				System.out.print("FirstName: "+ FirstName + ", ");
+	
+				String LastName = resultsQuery4.getString("LastName");
+				System.out.print("LastName: "+ LastName + ", ");
+				
+				System.out.println();
+			}
+		}catch (SQLException e) 
+		{
+			System.out.println("Can't run query4");
+		}
+		
+		System.out.println();
+
+		
+//query 5
+		System.out.println("Query 5 Results");
+		try {
+			
+			String query5 = "SELECT Title, StartTime, Auditorium_No, TheatreName ";
+			query5 += "FROM Movie JOIN Features JOIN Showing JOIN Screens JOIN Auditorium JOIN Theatre ";
+			query5 += "ON Movie.Movie_Id = Features.Movie_Id ";
+			query5 += "AND Features.Showing_Id = Showing.Showing_Id ";
+			query5 += "AND Showing.Showing_Id = Screens.Showing_Id ";
+			query5 += "AND Screens.Theatre_Id = Auditorium.Theatre_Id ";
+		    query5 += "AND Auditorium.Theatre_Id = Theatre.Theatre_Id ";
+			query5 += "WHERE Auditorium.Auditorium_No IN (4, 12, 15)";
+					
+			
+			ResultSet resultsQuery5 = db.runQuery(query5);
+
+			while(resultsQuery5.next()) 
+			{
+
+
+				String Title = resultsQuery5.getString("Title");
+				System.out.print("Title: "+ Title + ", ");
+				
+				String StartTime = resultsQuery5.getString("StartTime");
+				System.out.print("Start Time: "+StartTime+ ", ");
+				
+				int Auditorium_No = resultsQuery5.getInt("Auditorium_No");
+				System.out.print("Auditorium_No: "+Auditorium_No+ ", ");
+
+				String TheatreName = resultsQuery5.getString("TheatreName");
+				System.out.print("Theatre Name: "+TheatreName+ ", ");
+
+				System.out.println();
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Can't run query5");
+		}
+	
+		System.out.println();
+
+		
+//query 6
+		System.out.println("Query 6 Results");
+		try {
+			
+			String query6 = "SELECT Movie.Rating, Movie.Title, Showing.StartTime, Showing.Month, Showing.Day, Showing.Year ";
+			query6 += "FROM (SELECT Month ";
+			query6 += "FROM Showing ";
+			query6 += "WHERE Month = 'December') AS DecemberMovies JOIN Movie JOIN Features JOIN Showing ";
+			query6 += "ON Movie.Movie_Id = Features.Movie_Id ";
+			query6 += "AND Features.Showing_Id = Showing.Showing_Id ";
+		    query6 += "WHERE Rating >= 2.0 ";
+			query6 += "GROUP BY StartTime ";
+			query6 += "HAVING StartTime BETWEEN '12:00 PM' AND '8:00 PM' ";
+			query6 += "ORDER BY Rating DESC";
+
+			ResultSet resultsQuery6 = db.runQuery(query6);
+
+			while(resultsQuery6.next()) 
+			{
+
+				double Rating = resultsQuery6.getDouble("Rating");
+				System.out.print("Rating: "+ Rating + ", ");
+
+				String Title = resultsQuery6.getString("Title");
+				System.out.print("Title: "+ Title + ", ");
+				
+				String StartTime = resultsQuery6.getString("StartTime");
+				System.out.print("Start Time: "+StartTime+ ", ");
+				
+				String Month = resultsQuery6.getString("Month");
+				System.out.print("Month: " + Month +", ");
+				
+				int Day = resultsQuery6.getInt("Day");
+				System.out.print("Day: " + Day +", ");
+				
+				int Year = resultsQuery6.getInt("Year");
+				System.out.print("Year: " + Year +", ");
+				
+				System.out.println();
+			}
+
+		} catch (SQLException e) 
+		{
+			System.out.println("Can't run query6");
+		}
+
+		//disconnect at the end
+		try {
+			db.disconnect();
+		} catch (SQLException e) {
+			System.out.print("Database closure failed...");
+			e.printStackTrace();
+		}
+		System.out.print("Disconnected!\n");
+	}
+}
